@@ -25,3 +25,11 @@ body {
     margin-top: -10px;
     
 }
+.single-line {
+    display: inline-block; /* Change to inline-block to force vertical stacking */
+}
+.single-line #clock,
+.single-line #date {
+    display: block; /* Ensure each is on a new line */
+    margin: 0; /* Remove any default margins */
+}

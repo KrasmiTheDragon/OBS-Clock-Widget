@@ -1,27 +1,30 @@
-function getQueryParam(param) {
+function getQueryParams() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
+    return urlParams.get('mode') ? urlParams.get('mode').split(',').map(m => m.trim()) : [];
 }
 
 function updateClock() {
     const now = new Date();
-    const mode = getQueryParam('mode');
+    const modes = getQueryParams();
     let time, date;
 
-    // Handle time format and seconds
-    if (mode === '24h') {
-        time = now.toLocaleTimeString('en-US', { hour12: true });
-    } else {
-        time = now.toLocaleTimeString('en-US', { hour12: false });
+    // Default to 24-hour format
+    time = now.toLocaleTimeString('en-US', { hour12: false });
+
+    // Apply modes
+    if (modes.includes('12h')) {
+        time = now.toLocaleTimeString('en-US', { hour12: true }); // Switch to 12-hour with '24h' mode
     }
-    if (mode === 'noseconds') {
-        time = time.replace(/\s*:\d{2}$/, ''); // Remove seconds 
+    if (modes.includes('noseconds')) {
+        time = time.replace(/:\d{2}(?=\s|$)/, ''); // Remove seconds
     }
 
-    // Handle date and layout
+    // Handle date
     date = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase().replace(/,/g, '');
+
+    // Apply layout mode
     const container = document.querySelector('.clock-container');
-    if (mode === 'single') {
+    if (modes.includes('single')) {
         container.classList.add('single-line');
     } else {
         container.classList.remove('single-line');
