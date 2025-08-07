@@ -18,7 +18,16 @@ function updateClock() {
     if (modes.includes('noseconds')) {
         time = time.replace(/:\d{2}(?=\s|$)/, ''); // Remove seconds
     }
-
+    if (modes.includes('center')) {
+    document.querySelector('.clock-container').classList.add('centered');
+    } else {
+    document.querySelector('.clock-container').classList.remove('centered');
+    }
+    if (modes.includes('right')) {
+    document.querySelector('.clock-container').classList.add('righted');
+    } else {
+    document.querySelector('.clock-container').classList.remove('righted');
+    }
     // Handle date
     date = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase().replace(/,/g, '');
 
