@@ -38,8 +38,33 @@ function updateClock() {
     } else {
     document.querySelector('.clock-container').classList.remove('righted');
     }
-    // Handle date
+
+
+    // Date format mode: look for mode starting with "date-"
+    const dateMode = modes.find(m => m.startsWith('date-'));
+    if (dateMode) {
+    // Extract format string after "date-"
+    const format = dateMode.slice(5);
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = String(now.getFullYear());
+    const yearShort = year.slice(-2);
+    const monthShort = now.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+    const monthLong = now.toLocaleString('en-US', { month: 'long' }).toUpperCase();
+
+    // Replace tokens in format string (order matters: mmmm before mmm)
+    date = format
+        .replace(/dd/gi, day)
+        .replace(/mmmm/gi, monthLong)
+        .replace(/mmm/gi, monthShort)
+        .replace(/mm/gi, month)
+        .replace(/yyyy/gi, year)
+        .replace(/yy/gi, yearShort);
+} else {
+    // Default format
     date = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase().replace(/,/g, '');
+}
+
 
     // Apply layout mode
     const container = document.querySelector('.clock-container');
