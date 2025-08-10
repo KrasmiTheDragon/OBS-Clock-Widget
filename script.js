@@ -8,6 +8,16 @@ function updateClock() {
     const modes = getQueryParams();
     let time, date;
 
+    // Color mode: look for mode starting with "color-"
+    const colorMode = modes.find(m => m.startsWith('color-'));
+    let color = '';
+    if (colorMode) {
+        color = colorMode.slice(6); // Get the color value after "color-"
+        document.querySelector('.clock-container').style.color = color;
+    } else {
+        document.querySelector('.clock-container').style.color = ''; // Reset to default
+    }
+
     // Default to 24-hour format
     time = now.toLocaleTimeString('en-US', { hour12: false });
 
