@@ -31,6 +31,10 @@ body {
     margin-top: -10px;
     
 }
+#clockNdate {
+    font-size: 4em;
+    margin-bottom: -10px;
+}
 .centered {
     align-items: center !important;
     text-align: center !important;
