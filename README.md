@@ -1,5 +1,5 @@
 # Clock widget
-I mean it's a clock what you want?
+I mean it's a clock. What else you want?
 
 ## ?mode=
 Separate with ","
