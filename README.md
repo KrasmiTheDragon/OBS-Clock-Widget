@@ -7,6 +7,8 @@ Separate with ","
 - color-(insert color)
   - Name, rgb(0,0,0), #number
 - date-(insert date format)
+  - wks (weekday in short txt (also ads date number by default))
+  - wkl (weekday in long txt (also ads date number by default))
   - dd 
   - mm
   - mmm (month in short txt)
@@ -16,3 +18,5 @@ Separate with ","
 -  noseconds
 -  center
 -  right
+-  single-(dateTime or timeDate) (for single line widget)
+    
