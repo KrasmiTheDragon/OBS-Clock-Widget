@@ -23,7 +23,7 @@ function updateClock() {
 
     // Apply modes
     if (modes.includes('12h')) {
-        time = now.toLocaleTimeString('en-US', { hour12: true }); // Switch to 12-hour with '24h' mode
+        time = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
     if (modes.includes('noseconds')) {
         time = time.replace(/:\d{2}(?=\s|$)/, ''); // Remove seconds
